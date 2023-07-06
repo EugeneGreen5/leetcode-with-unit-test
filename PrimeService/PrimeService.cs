@@ -1,4 +1,7 @@
-﻿namespace PrimeService;
+﻿using System.Diagnostics.Metrics;
+using System.Text;
+
+namespace PrimeService;
 
 public class PrimeService
 {
@@ -79,4 +82,98 @@ public class PrimeService
 
         return words[words.Length-1].Length;
     }
+
+    public string MergeAlternately(string word1, string word2)
+    {
+        StringBuilder mergedString = new StringBuilder(word1.Length + word2.Length);
+        
+        for(int i = 0; i < word1.Length && i < word2.Length; i++)
+        {
+            mergedString.Append(word1[i]);
+            mergedString.Append(word2[i]);
+        }
+        
+        if (word1.Length > word2.Length)
+        {
+            for (int i = word2.Length; i < word1.Length; i++)
+            {
+                mergedString.Append(word1[i]);
+            }
+        } else if (word1.Length < word2.Length) {
+            for (int i = word1.Length; i < word2.Length; i++)
+            {
+                mergedString.Append(word2[i]);
+            }
+        }
+
+        return mergedString.ToString();
+    }
+
+    public bool CanPlaceFlowers(int[] flowerbed, int n)
+    {
+        int counter = 0;
+        int previousValue = 0;
+        int nextvalue;
+        if (flowerbed.Length == 1) nextvalue = 0;
+        else nextvalue = flowerbed[1];
+        for(int i = 0; i < flowerbed.Length; i++)
+        {
+            
+            if (previousValue == 0 && flowerbed[i] == 0 && nextvalue == 0) {
+                counter++;
+                flowerbed[i] = 1;
+            }
+
+            previousValue = flowerbed[i];
+            if (i != (flowerbed.Length - 2) && i != (flowerbed.Length - 1)) nextvalue = flowerbed[i + 2];
+            else nextvalue = 0;
+        }
+        if (counter == n) return true;
+        return false;
+    }
+
+
+    private readonly char[] lowerCase = { 'a', 'e', 'i', 'o', 'u' };
+    private readonly char[] upperCase = { 'A', 'E', 'I', 'O', 'U' };
+    public string ReverseVowels(string s)
+    {
+        var result = new StringBuilder(s);
+        char[] lowerCase = { 'a', 'e', 'i', 'o', 'u'};
+        char[] upperCase = { 'A', 'E', 'I', 'O', 'U' };
+
+        var stack = new Stack<char>();
+
+        for (int i = 0; i < s.Length; i++)
+        {
+            if (isVowels(result[i])) stack.Push(result[i]);
+        }
+
+        for (int i = 0; i < s.Length; i++)
+        {
+            if (isVowels(result[i])) result[i] = stack.Pop();
+        }
+
+        return result.ToString();
+    }
+
+    public bool isVowels(char symbol) => 
+        lowerCase.Contains(symbol) || upperCase.Contains(symbol);
+
+    public IList<bool> KidsWithCandies(int[] candies, int extraCandies)
+    {
+        var list = new List<bool>(candies.Length);
+        int maxValue = candies[1];
+        for (int i = 0; i < candies.Length; i++)
+        {
+            for (int j = 0; j < candies.Length; j++)
+            {
+                if (i != j && maxValue < candies[j]) maxValue = candies[j];
+            }
+            if (maxValue < candies[i] + extraCandies) list.Add(true);
+            else list.Add(false);
+        }
+
+        return list;
+    }
+
 }
