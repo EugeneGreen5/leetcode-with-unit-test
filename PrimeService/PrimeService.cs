@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Metrics;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PrimeService;
 
@@ -176,4 +177,78 @@ public class PrimeService
         return list;
     }
 
+    public string GcdOfStrings(string str1, string str2)
+    {
+
+        StringBuilder string1 = new StringBuilder(str2);
+        Regex regex;
+        while (string1.Length > 0)
+        {
+            regex = new Regex(string1.ToString());
+            if (Regex.IsMatch(str1, $@"\b({string1})\1\b")) return string1.ToString();
+            else string1.Length--;
+        }
+        return "";
+    }
+
+    public string ReverseWords(string s)
+    {
+        string[] words = s.Split(' ', StringSplitOptions.RemoveEmptyEntries).Reverse().ToArray();
+        return string.Join(" ", words);
+    }
+
+    public int[] ProductExceptSelf(int[] nums)
+    {
+        int myltiply = 1, counterZero = 0;
+
+        for(int i = 0; i < nums.Length; i++) 
+        {
+            if (nums[i] == 0) 
+            {
+                counterZero++;
+            } else
+            {
+                myltiply *= nums[i];
+            }
+        }
+
+        if (counterZero > 1)
+        {
+            for(int i = 0; i < nums.Length; i++)
+            {
+                nums[i] = 0;
+            }
+        } 
+        else
+        {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 0) nums[i] = myltiply;
+                else if (counterZero == 1) nums[i] = 0;
+                else nums[i] = myltiply / nums[i];
+            }
+        }
+
+        return nums;
+
+/*        int rightMyltiply;
+        if (nums[0] == 0) rightMyltiply = 0;
+        else rightMyltiply = nums.Aggregate((x, y) => x * y);
+        int leftMyltiply = 1;
+        int trash;
+       
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (nums[i] == 0) continue; // need new idea
+            else
+            {
+                trash = nums[i];
+                rightMyltiply /= nums[i];
+                nums[i] = leftMyltiply * rightMyltiply;
+                leftMyltiply *= trash;
+            }
+        }
+        return nums;*/
+
+    }
 }

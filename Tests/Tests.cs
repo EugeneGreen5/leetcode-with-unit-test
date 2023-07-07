@@ -64,7 +64,7 @@ public class Tests
         Assert.AreEqual(resultFind, result);
     }
 
-    [TestCase(new int[] { 0, 0, 1, 0, 0 }, 1, true)]
+    [TestCase(new int[]{0, 0, 1, 0, 0}, 1, true)]
     [TestCase(new int[]{1, 0, 0, 0, 1}, 1, true)]
     [TestCase(new int[]{1, 0, 0, 0, 1}, 2, false)]
     [TestCase(new int[]{0, 0, 1, 0, 1}, 1, true)]
@@ -74,11 +74,31 @@ public class Tests
         Assert.AreEqual(resultFind, result);
     }
 
-
-    [TestCase(new int[] { 2, 3, 5, 1, 3 }, 3, new List<bool>() { true, true, true, false, true })]
-    public void TestKidsWithCandies(int[] array, int n, List<bool> result)
+    [TestCase("ABABAB", "ABAB", "AB")]
+    [TestCase("ABCABC", "ABC", "ABC")]
+    [TestCase("LEET", "CODE", "")]
+    [TestCase("HELLOHELLOHELLO", "HELLO","HELLO")]
+    public void TestGcdOfStrings(string str1, string str2, string result)
     {
-        var resultFind = _primeService.KidsWithCandies(array, n);
-        Assert.AreEqual(resultFind, result);
+        var resultFunc = _primeService.GcdOfStrings(str1, str2);
+        Assert.AreEqual(resultFunc, result);
+    }
+
+    [TestCase("the sky is blue", "blue is sky the")]
+    [TestCase("  hello world       ", "world hello")]
+    [TestCase("a good   example", "example good a")]
+
+    public void ReverseWords(string str1, string result)
+    {
+        var resultFunc = _primeService.ReverseWords(str1);
+        Assert.AreEqual(resultFunc, result);
+    }
+
+    [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 24, 12, 8, 6 })]
+    [TestCase(new int[] { -1, 1, 0, -3, 3 }, new int[] { 0, 0, 9, 0, 0 })]
+    public void TestProductExceptSelf(int[] array, int[] result)
+    {
+        var resultFunc = _primeService.ProductExceptSelf(array);
+        Assert.AreEqual(resultFunc, result);
     }
 }
