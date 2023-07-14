@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Metrics;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -362,5 +363,38 @@ public class PrimeService
 
         return result.ToString();
 
+    }
+
+    public int[] AsteroidCollision(int[] asteroids)
+    {
+        var stack = new Stack<int>();
+        int lastElement;
+        foreach(var element in asteroids)
+        {
+            if (stack.Count == 0) stack.Push(element);
+            else
+            {
+                lastElement = stack.Peek();
+                if (lastElement > 0 && element < 0) CheckElement(stack, element);
+                else stack.Push(element);
+            }
+        }
+        return stack.Reverse().ToArray();
+    }
+
+    public void CheckElement(Stack<int> stack, int element)
+    {
+        int lastElement = stack.Peek();
+        if (lastElement > 0 && element < 0)
+        {
+            if (Math.Abs(lastElement) < Math.Abs(element))
+            {
+                stack.Pop();
+                if (stack.Count == 0) stack.Push(element);
+                else CheckElement(stack, element);
+            }
+            else if (Math.Abs(stack.Peek()) == Math.Abs(element)) stack.Pop();
+        } else stack.Push(element);
+     
     }
 }

@@ -146,4 +146,14 @@ public class Tests
         Assert.AreEqual(resultFunc, result);
     }
 
+    [TestCase(new int[] { -2, -2, 1, -2 }, new int[] { -2, -2, -2 })]
+    [TestCase(new int[] { 5, 10, -5 }, new int[] { 5, 10 })]
+    [TestCase(new int[] { 8, -8 }, new int[] { })]
+    [TestCase(new int[] { 10, 2, -5 }, new int[] { 10 })]
+    public void TestAsteroidCollisions(int[] asteroids, int[] result)
+    {
+        var resultFunc = _primeService.AsteroidCollision(asteroids);
+        Assert.AreEqual(resultFunc, result);
+    }
+
 }
