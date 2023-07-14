@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Metrics;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Metrics;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -249,6 +250,117 @@ public class PrimeService
             }
         }
         return nums;*/
+
+    }
+
+    public bool IncreasingTriplet(int[] nums)
+    {
+        int minIndex = 0;
+        int minValue = nums[0];
+        int maxIndex = -1;
+        int maxValue = int.MinValue;
+        int counter = 1;
+
+/*        for(int i = 0; i < nums.Length; i++)
+        {
+            if ()
+        }*/
+
+        return false;
+
+/*        for (int i = 0; i < nums.Length; i++)
+        {
+            for (int j = i + 1; j < nums.Length; j++)
+            {
+                if (nums[i] < nums[j])
+                {
+                    for(int k = j + 1; k < nums.Length; k++)
+                    {
+                        if (nums[j] < nums[k]) return true;
+                    }
+                }
+            }
+        }
+
+        return false;*/
+    }
+
+    public bool IsSubsequence(string s, string t)
+    {
+        
+        while (s.Length > 0)
+        {
+            if (t.Contains(s.First()))
+            {
+                t = t.Remove(0, t.IndexOf(s.First()) + 1).ToString();
+                s = s.Remove(0, 1).ToString();
+            }
+            else return false;
+        }
+
+        return true;
+    }
+
+    public double FindMaxAverage(int[] nums, int k)
+    {
+        double sum = nums.Take(k).Sum();
+        double result = sum / k;
+        int previousValue = nums.First();
+
+        for(int i = k; i < nums.Length; i++)
+        {
+            sum += nums[i] - nums[i - k];
+            if (sum / k > result) result = sum / k;
+        }
+
+        return result;
+    }
+
+
+    public bool UniqueOccurrences(int[] arr)
+    {
+        var dictionary = new Dictionary<int, int>();
+
+        foreach (var element in arr)
+        {
+            if (dictionary.ContainsKey(element)) dictionary[element]++;
+            else dictionary[element] = 1;
+        }
+
+        int[] arrayValues = dictionary.Values.ToArray();
+        HashSet<int> setValue = arrayValues.ToHashSet<int>();
+
+        if (setValue.Count() == arrayValues.Length) return true;
+
+        return false;
+    }
+
+    public string RemoveStars(string s)
+    {
+        var stack = new Stack<char>();
+        StringBuilder result = new StringBuilder();
+
+        foreach(var element in s)
+        {
+            if (element != '*') stack.Push(element);
+            else
+            {
+                stack.Pop();
+            }
+        }
+
+        var newStack = new Stack<char>();
+
+        while (stack.Count != 0) {
+            newStack.Push(stack.Pop());
+        }
+
+        while (newStack.Count != 0)
+        {
+            result.Append(newStack.Pop());
+        }
+
+        return result.ToString();
 
     }
 }

@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace Tests;
 
 
@@ -101,4 +103,47 @@ public class Tests
         var resultFunc = _primeService.ProductExceptSelf(array);
         Assert.AreEqual(resultFunc, result);
     }
+
+    [TestCase(new int[] { 1, 2, 3, 4, 5 }, true)]
+    [TestCase(new int[] { 5, 4, 3, 2, 1 }, false)]
+    [TestCase(new int[] { 2, 1, 5, 0, 4, 6 }, true)]
+    public void TestIncreasingTriplet(int[] array, bool result)
+    {
+        var resultFunc = _primeService.IncreasingTriplet(array);
+        Assert.AreEqual(resultFunc, result);
+    }
+
+    [TestCase("abc", "ahbgdc", true)]
+    [TestCase("axc", "ahbgdc", false)]
+    public void TestIsSubsequence(string str1,string str2, bool result)
+    {
+        var resultFunc = _primeService.IsSubsequence(str1,str2);
+        Assert.AreEqual(resultFunc, result);
+    }
+
+    [TestCase(new int[] { 1, 12, -5, -6, 50, 3 },4, 12.75000)]
+    [TestCase(new int[] { 5 },1, 5.00000)]
+    public void TestFindMaxAverage(int[] nums, int k, double result)
+    {
+        var resultFunc = _primeService.FindMaxAverage(nums, k);
+        Assert.AreEqual(resultFunc, result);
+    }
+
+    [TestCase(new int[] { 1, 2, 2, 1, 1, 3 }, true)]
+    [TestCase(new int[] { 1, 2 }, false)]
+    [TestCase(new int[] { -3, 0, 1, -3, 1, 1, 1, -3, 10, 0 }, true)]
+    public void TestUniqueOccurrences(int[] nums, bool result)
+    {
+        var resultFunc = _primeService.UniqueOccurrences(nums);
+        Assert.AreEqual(resultFunc, result);
+    }
+
+    [TestCase("leet**cod*e", "lecoe")]
+    [TestCase("erase*****", "")]
+    public void TestRemoveStars(string s, string result)
+    {
+        var resultFunc = _primeService.RemoveStars(s);
+        Assert.AreEqual(resultFunc, result);
+    }
+
 }
