@@ -501,4 +501,36 @@ public class PrimeService
             }
         }
     }
+
+    public int MaxArea(int[] height)
+    {
+        int l = 0;
+        int r = height.Length - 1;
+        int currentArea, maxArea = 0;
+
+        while (l < r)
+        {
+            currentArea = (r - l) * Math.Min(height[l], height[r]);
+            
+            if (currentArea > maxArea) maxArea = currentArea;
+            if (height[l] > height[r]) r--;
+            else l++;
+        }
+
+        return maxArea;
+
+/*        int maxArea = 0;
+        int currentArea;
+        for(int i = 0; i < height.Length - 1; i++)
+        {
+            for (int j = i + 1; j < height.Length;  j++)
+            {
+                if (height[i] < height[j]) currentArea = height[i] * (j - i);
+                else currentArea = height[j] * (j - i);
+                if (currentArea > maxArea) maxArea = currentArea;
+            }
+        }
+
+        return maxArea;*/
+    }
 }

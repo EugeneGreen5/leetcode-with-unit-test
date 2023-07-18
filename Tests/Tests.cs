@@ -183,4 +183,13 @@ public class Tests
         var resultFunc = _primeService.MaxVowels(s,k);
         Assert.AreEqual(resultFunc, result);
     }
+
+
+    [TestCase(new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 },  49)]
+    [TestCase(new int[] { 1, 1 },  1)]
+    public void TestMaxArea(int[] height, int result)
+    {
+        var resultFunc = _primeService.MaxArea(height);
+        Assert.AreEqual(resultFunc, result);
+    }
 }
