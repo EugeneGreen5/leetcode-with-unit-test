@@ -467,4 +467,24 @@ public class PrimeService
 
         return result;
     }
+
+    public int MaxVowels(string s, int k)
+    {
+        int maxVowels = 0;
+        int currentVowels = 0;
+        for(int i = 0; i < s.Length; i++)
+        {
+            if (i < k)
+            {
+                if (isVowels(s[i])) currentVowels++;
+                continue;
+            }
+            if (isVowels(s[i])) currentVowels++;
+            if (isVowels(s[i - k])) currentVowels--;
+            if (maxVowels < currentVowels) maxVowels = currentVowels;
+        }
+
+        return maxVowels;
+    }
+
 }

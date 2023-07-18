@@ -173,4 +173,14 @@ public class Tests
         var resultFunc = _primeService.PivotIndex(gain);
         Assert.AreEqual(resultFunc, result);
     }
+
+    [TestCase("tryhard", 4, 1)]
+    [TestCase("abciiidef", 3, 3)]
+    [TestCase("aeiou", 2, 2)]
+    [TestCase("leetcode", 3, 2)]
+    public void TestMaxVowels(string s,int k, int result)
+    {
+        var resultFunc = _primeService.MaxVowels(s,k);
+        Assert.AreEqual(resultFunc, result);
+    }
 }
