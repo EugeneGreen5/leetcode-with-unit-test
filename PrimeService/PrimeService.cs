@@ -451,4 +451,20 @@ public class PrimeService
         return max;
 
     }
+
+    public int PivotIndex(int[] nums)
+    {
+        int result = -1;
+        int leftSum = 0, rightSum = nums.Sum() - nums[0];
+        if (leftSum == rightSum) result = 0;
+
+        for (int i = 1; i < nums.Length; i++)
+        {
+            leftSum += nums[i-1];
+            rightSum -= nums[i];
+            if (leftSum == rightSum) return i;
+        }
+
+        return result;
+    }
 }

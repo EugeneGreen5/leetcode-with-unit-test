@@ -164,4 +164,13 @@ public class Tests
         Assert.AreEqual(resultFunc, result);
     }
 
+    [TestCase(new int[] { -1, -1, 0, 0, -1, -1 }, 2)]
+    [TestCase(new int[] { 1, 7, 3, 6, 5, 6 }, 3)]
+    [TestCase(new int[] { 1, 2, 3 }, -1)]
+    [TestCase(new int[] { 2, 1, -1 }, 0)]
+    public void TestPivotIndex(int[] gain, int result)
+    {
+        var resultFunc = _primeService.PivotIndex(gain);
+        Assert.AreEqual(resultFunc, result);
+    }
 }
