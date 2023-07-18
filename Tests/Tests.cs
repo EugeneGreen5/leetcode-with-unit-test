@@ -9,7 +9,7 @@ public class Tests
     private PrimeService.PrimeService _primeService;
 
     [SetUp]
-    public void Setup()
+    public void Setup   ()
     {
         _primeService = new PrimeService.PrimeService();
     }
@@ -153,6 +153,14 @@ public class Tests
     public void TestAsteroidCollisions(int[] asteroids, int[] result)
     {
         var resultFunc = _primeService.AsteroidCollision(asteroids);
+        Assert.AreEqual(resultFunc, result);
+    }
+
+    [TestCase(new int[] { -5, 1, 5, 0, -7 }, 1)]
+    [TestCase(new int[] { -4, -3, -2, -1, 4, 3, 2 }, 0 )]
+    public void TestLargestAltitude(int[] gain, int result)
+    {
+        var resultFunc = _primeService.LargestAltitude(gain);
         Assert.AreEqual(resultFunc, result);
     }
 

@@ -395,6 +395,60 @@ public class PrimeService
             }
             else if (Math.Abs(stack.Peek()) == Math.Abs(element)) stack.Pop();
         } else stack.Push(element);
-     
+
+    }
+
+    /*public string DecodeString(string s)
+    {
+        StringBuilder input = new StringBuilder(s);
+        StringBuilder currentString = new StringBuilder();
+
+        var stack = new Stack<char>();
+
+        while (input.Length > 0)
+        {
+            if ()
+        }
+    }*/
+
+    public class ListNode
+    {
+        public int val;
+        public ListNode next;
+        public ListNode(int val = 0, ListNode next = null)
+        {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+
+    public string DecodeString(string s)
+    {
+        StringBuilder newString = new StringBuilder();
+
+        Stack<char> stack = new Stack<char>();
+
+
+
+
+        return s;
+    }
+
+    public int LargestAltitude(int[] gain)
+    {
+        int[] newGain = new int[gain.Length + 1];
+        newGain[0] = 0;
+        int max = 0;
+
+        for(int i = 0; i < gain.Length; i++)
+        {
+            newGain[i + 1] = newGain[i] + gain[i];
+            
+            if (newGain[i+1] > max) max = newGain[i+1];
+        }
+
+        return max;
+
     }
 }
