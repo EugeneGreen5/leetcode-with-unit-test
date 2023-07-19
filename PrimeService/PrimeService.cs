@@ -184,11 +184,28 @@ public class PrimeService
 
         StringBuilder string1 = new StringBuilder(str2);
         Regex regex;
+        bool flagString1, flagString2;
         while (string1.Length > 0)
         {
-            regex = new Regex(string1.ToString());
-            if (Regex.IsMatch(str1, $@"\b({string1})\1\b")) return string1.ToString();
-            else string1.Length--;
+
+            if (string1.Length == str1.Length)
+                if (string1.Equals(str1)) flagString1 = true;
+                else flagString1 = false;
+            else
+                flagString1 = new Regex($"^({string1})({string1})*({string1})").IsMatch(str1);
+
+            if (string1.Length == str2.Length)
+                if (string1.Equals(str2)) flagString2 = true;
+                else flagString2 = false;
+            else
+                flagString2 = new Regex($"^({string1})({string1})*({string1})").IsMatch(str2);
+
+
+            if (flagString1 && flagString2
+                && str1.Length % string1.Length == 0
+                && str2.Length % string1.Length == 0) return string1.ToString();
+
+            string1.Length--;
         }
         return "";
     }
