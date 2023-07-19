@@ -519,18 +519,28 @@ public class PrimeService
 
         return maxArea;
 
-/*        int maxArea = 0;
-        int currentArea;
-        for(int i = 0; i < height.Length - 1; i++)
+    }
+
+    public int MaxOperations(int[] nums, int k)
+    {
+        Array.Sort(nums);
+        int result = 0;
+        int l = 0, r = nums.Length - 1;
+        int sum;
+        while (l < r)
         {
-            for (int j = i + 1; j < height.Length;  j++)
+            sum = nums[l] + nums[r];
+            if (sum == k)
             {
-                if (height[i] < height[j]) currentArea = height[i] * (j - i);
-                else currentArea = height[j] * (j - i);
-                if (currentArea > maxArea) maxArea = currentArea;
+                result += 1;
+                l++;
+                r--;
             }
+            else if (sum > k) r--;
+            else l++;
         }
 
-        return maxArea;*/
+        return result;
+
     }
 }

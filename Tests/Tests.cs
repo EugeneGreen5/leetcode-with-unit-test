@@ -192,4 +192,12 @@ public class Tests
         var resultFunc = _primeService.MaxArea(height);
         Assert.AreEqual(resultFunc, result);
     }
+
+    [TestCase(new int[] { 1, 2, 3, 4 }, 5 , 2)]
+    [TestCase(new int[] { 3, 1, 3, 4, 3 }, 6 , 1)]
+    public void TestMaxOperations(int[] nums,int k, int result)
+    {
+        var resultFunc = _primeService.MaxOperations(nums, k);
+        Assert.AreEqual(resultFunc, result);
+    }
 }
