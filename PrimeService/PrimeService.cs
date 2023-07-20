@@ -584,4 +584,47 @@ public class PrimeService
         currentNode.next = currentNode.next.next;
         return head;
     }
+
+    public static ListNode OddEvenList(ListNode head)
+    {
+        int iterator = 1;
+        ListNode nextNode;
+        ListNode currentOdd = head, currentEven, headEven, currentNode = head;
+        if (head is null) return null;
+        else if (head.next is not null)
+        {
+            currentEven = head.next;
+            headEven = head.next;
+        }
+        else return head;
+
+        while (currentNode.next.next is not null)
+        {
+            nextNode = currentNode.next;
+            if (iterator % 2 == 1)
+            {
+                currentOdd.next = currentNode.next.next;
+                currentOdd = currentOdd.next;
+            }
+            else
+            {
+                currentEven.next = currentNode.next.next;
+                currentEven = currentEven.next;
+            }
+            iterator++;
+            currentNode = nextNode;
+
+        }
+        if (iterator % 2 == 0)
+        {
+            currentOdd.next = currentNode.next;
+            currentEven.next = null;
+        }
+
+        currentOdd.next = headEven;
+
+        return head;
+    }
+
+    
 }
