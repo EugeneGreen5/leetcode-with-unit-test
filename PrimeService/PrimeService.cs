@@ -181,7 +181,7 @@ public class PrimeService
 
     public string GcdOfStrings(string str1, string str2)
     {
-
+        
         StringBuilder string1 = new StringBuilder(str2);
         Regex regex;
         bool flagString1, flagString2;
@@ -192,13 +192,13 @@ public class PrimeService
                 if (string1.Equals(str1)) flagString1 = true;
                 else flagString1 = false;
             else
-                flagString1 = new Regex($"^({string1})({string1})*({string1})").IsMatch(str1);
+                flagString1 = new Regex($"^({string1})({string1})*({string1})$").IsMatch(str1);
 
             if (string1.Length == str2.Length)
                 if (string1.Equals(str2)) flagString2 = true;
                 else flagString2 = false;
             else
-                flagString2 = new Regex($"^({string1})({string1})*({string1})").IsMatch(str2);
+                flagString2 = new Regex($"^({string1})({string1})*({string1})$").IsMatch(str2);
 
 
             if (flagString1 && flagString2
@@ -559,5 +559,29 @@ public class PrimeService
 
         return result;
 
+    }
+
+    public ListNode DeleteMiddle(ListNode head)
+    {
+        int length = 0, iterator = 0;
+        ListNode currentNode = head;
+
+        while (currentNode is not null)
+        {
+            length++;
+            currentNode = currentNode.next;
+        }
+        if (length == 1) return null;
+        int element = length / 2;
+
+        currentNode = head;
+        while (element != iterator + 1)
+        {
+            iterator++;
+            currentNode = currentNode.next;
+        }
+
+        currentNode.next = currentNode.next.next;
+        return head;
     }
 }
