@@ -8,13 +8,14 @@ internal class Program
 
         //PrimeService.PrimeService.FindDifferenceA(new int[] { 1, 2, 3 }, new int[] { 2, 4, 6 });
 
-        PrimeService.PrimeService.ListNode oldHead = ConvertToLinkedList(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 });
+        PrimeService.PrimeService.ListNode oldHead = ConvertToLinkedList(new int[] { 5, 4, 2, 1 });
         PrintLinkedList(oldHead);
 
+        Console.WriteLine(PrimeService.PrimeService.PairSum(oldHead));
 
-        oldHead = PrimeService.PrimeService.ReverseList(oldHead);
+        //oldHead = PrimeService.PrimeService.ReverseList(oldHead);
 
-        PrintLinkedList(oldHead);
+        //PrintLinkedList(oldHead);
 
     }
 

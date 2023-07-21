@@ -637,7 +637,7 @@ public class PrimeService
         ListNode newHead, previousNode = head, currentNode = head, nextNode;
 
         if (head is null) return null;
-        else (head.next is null) return head;
+        else if (head.next is null) return head;
 
         currentNode = head.next;
         previousNode.next = null;
@@ -652,5 +652,29 @@ public class PrimeService
         currentNode.next = previousNode;
 
         return currentNode;
+    }
+
+    public static int PairSum(ListNode head)
+    {
+        ListNode currentNode = head;
+        int iterator = 0;
+        var listWithSum = new List<int>();
+
+        if (head is null) return 0;
+
+        while (currentNode != null)
+        {
+            listWithSum.Add(currentNode.val);
+            currentNode = currentNode.next;
+        }
+
+        int sum = 0, currentSum = 0;
+        for(int i = 0; i < listWithSum.Count / 2; i++)
+        {
+            currentSum = listWithSum[i] + listWithSum[listWithSum.Count - 1 - i];
+            if (currentSum > sum) sum = currentSum;
+        }
+
+        return sum;
     }
 }
