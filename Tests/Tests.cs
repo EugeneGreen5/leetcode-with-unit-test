@@ -9,7 +9,7 @@ public class Tests
     private PrimeService.PrimeService _primeService;
 
     [SetUp]
-    public void Setup   ()
+    public void Setup()
     {
         _primeService = new PrimeService.PrimeService();
     }
@@ -66,11 +66,11 @@ public class Tests
         Assert.AreEqual(resultFind, result);
     }
 
-    [TestCase(new int[]{0, 0, 1, 0, 0}, 1, true)]
-    [TestCase(new int[]{1, 0, 0, 0, 1}, 1, true)]
-    [TestCase(new int[]{1, 0, 0, 0, 1}, 2, false)]
-    [TestCase(new int[]{0, 0, 1, 0, 1}, 1, true)]
-    public void TestCanPlace(int[] array,int n, bool result)
+    [TestCase(new int[] { 0, 0, 1, 0, 0 }, 1, true)]
+    [TestCase(new int[] { 1, 0, 0, 0, 1 }, 1, true)]
+    [TestCase(new int[] { 1, 0, 0, 0, 1 }, 2, false)]
+    [TestCase(new int[] { 0, 0, 1, 0, 1 }, 1, true)]
+    public void TestCanPlace(int[] array, int n, bool result)
     {
         var resultFind = _primeService.CanPlaceFlowers(array, n);
         Assert.AreEqual(resultFind, result);
@@ -79,7 +79,7 @@ public class Tests
     [TestCase("ABABAB", "ABAB", "AB")]
     [TestCase("ABCABC", "ABC", "ABC")]
     [TestCase("LEET", "CODE", "")]
-    [TestCase("HELLOHELLOHELLO", "HELLO","HELLO")]
+    [TestCase("HELLOHELLOHELLO", "HELLO", "HELLO")]
     public void TestGcdOfStrings(string str1, string str2, string result)
     {
         var resultFunc = _primeService.GcdOfStrings(str1, str2);
@@ -115,14 +115,14 @@ public class Tests
 
     [TestCase("abc", "ahbgdc", true)]
     [TestCase("axc", "ahbgdc", false)]
-    public void TestIsSubsequence(string str1,string str2, bool result)
+    public void TestIsSubsequence(string str1, string str2, bool result)
     {
-        var resultFunc = _primeService.IsSubsequence(str1,str2);
+        var resultFunc = _primeService.IsSubsequence(str1, str2);
         Assert.AreEqual(resultFunc, result);
     }
 
-    [TestCase(new int[] { 1, 12, -5, -6, 50, 3 },4, 12.75000)]
-    [TestCase(new int[] { 5 },1, 5.00000)]
+    [TestCase(new int[] { 1, 12, -5, -6, 50, 3 }, 4, 12.75000)]
+    [TestCase(new int[] { 5 }, 1, 5.00000)]
     public void TestFindMaxAverage(int[] nums, int k, double result)
     {
         var resultFunc = _primeService.FindMaxAverage(nums, k);
@@ -157,7 +157,7 @@ public class Tests
     }
 
     [TestCase(new int[] { -5, 1, 5, 0, -7 }, 1)]
-    [TestCase(new int[] { -4, -3, -2, -1, 4, 3, 2 }, 0 )]
+    [TestCase(new int[] { -4, -3, -2, -1, 4, 3, 2 }, 0)]
     public void TestLargestAltitude(int[] gain, int result)
     {
         var resultFunc = _primeService.LargestAltitude(gain);
@@ -178,26 +178,27 @@ public class Tests
     [TestCase("abciiidef", 3, 3)]
     [TestCase("aeiou", 2, 2)]
     [TestCase("leetcode", 3, 2)]
-    public void TestMaxVowels(string s,int k, int result)
+    public void TestMaxVowels(string s, int k, int result)
     {
-        var resultFunc = _primeService.MaxVowels(s,k);
+        var resultFunc = _primeService.MaxVowels(s, k);
         Assert.AreEqual(resultFunc, result);
     }
 
 
-    [TestCase(new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 },  49)]
-    [TestCase(new int[] { 1, 1 },  1)]
+    [TestCase(new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 }, 49)]
+    [TestCase(new int[] { 1, 1 }, 1)]
     public void TestMaxArea(int[] height, int result)
     {
         var resultFunc = _primeService.MaxArea(height);
         Assert.AreEqual(resultFunc, result);
     }
 
-    [TestCase(new int[] { 1, 2, 3, 4 }, 5 , 2)]
-    [TestCase(new int[] { 3, 1, 3, 4, 3 }, 6 , 1)]
-    public void TestMaxOperations(int[] nums,int k, int result)
+    [TestCase(new int[] { 1, 2, 3, 4 }, 5, 2)]
+    [TestCase(new int[] { 3, 1, 3, 4, 3 }, 6, 1)]
+    public void TestMaxOperations(int[] nums, int k, int result)
     {
         var resultFunc = _primeService.MaxOperations(nums, k);
         Assert.AreEqual(resultFunc, result);
     }
+
 }

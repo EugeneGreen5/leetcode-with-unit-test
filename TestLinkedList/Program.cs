@@ -6,13 +6,15 @@ internal class Program
     private static void Main(string[] args)
     {
 
-        PrimeService.PrimeService.ListNode oldHead = ConvertToLinkedList(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 });
+        PrimeService.PrimeService.FindDifferenceA(new int[] { 1, 2, 3 }, new int[] { 2, 4, 6 });
+
+/*        PrimeService.PrimeService.ListNode oldHead = ConvertToLinkedList(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 });
         PrintLinkedList(oldHead);
 
         
         oldHead = PrimeService.PrimeService.OddEvenList(oldHead);
 
-        PrintLinkedList(oldHead);
+        PrintLinkedList(oldHead);*/
 
     }
 

@@ -626,5 +626,9 @@ public class PrimeService
         return head;
     }
 
-    
+    public static IList<IList<int>> FindDifferenceA(int[] nums1, int[] nums2) =>
+        new[] {
+            nums1.Except(nums2).ToArray(),
+            nums2.Except(nums1).ToArray(),
+        };
 }
