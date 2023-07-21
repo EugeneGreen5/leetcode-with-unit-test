@@ -677,4 +677,48 @@ public class PrimeService
 
         return sum;
     }
+
+    public class TreeNode
+    {
+        public int val;
+        public TreeNode left;
+        public TreeNode right;
+        public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+        {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    public int MaxDepth(TreeNode root)
+    {
+        var stackNodes = new Stack<TreeNode>();
+        var stackValue = new Stack<int>();
+
+        int currentValue, maxDepth = 0;
+        TreeNode currentNode;
+
+        stackNodes.Push(root);
+        stackValue.Push(1);
+
+        while (stackNodes.Count != 0)
+        {
+            currentNode = stackNodes.Pop();
+            currentValue = stackValue.Pop();
+            if (currentNode.right is not null)
+            {
+                stackNodes.Push(currentNode.right);
+                stackValue.Push(currentValue + 1);
+            }
+            if (currentNode.left is not null)
+            {
+                stackNodes.Push(currentNode.left);
+                stackValue.Push(currentValue + 1);
+            }
+
+            if (currentValue > maxDepth) maxDepth = currentValue;
+        }
+        return maxDepth;
+    }
 }
