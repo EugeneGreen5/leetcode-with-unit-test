@@ -764,4 +764,27 @@ public class PrimeService
 
         return list;
     }
+
+    public class RecentCounter
+    {
+        private Queue<int> queue;
+        public RecentCounter()
+        {
+            queue = new Queue<int>();
+        }
+
+        public int Ping(int t)
+        {
+            ;
+            queue.Enqueue(t);
+            while (t - queue.Peek() > 3000)
+            {
+                queue.Dequeue();
+            }
+
+            return queue.Count();
+        }
+        }
+    }
+
 }
