@@ -693,6 +693,7 @@ public class PrimeService
 
     public int MaxDepth(TreeNode root)
     {
+        var list = new List<int>();
         var stackNodes = new Stack<TreeNode>();
         var stackValue = new Stack<int>();
 
@@ -720,5 +721,47 @@ public class PrimeService
             if (currentValue > maxDepth) maxDepth = currentValue;
         }
         return maxDepth;
+    }
+
+    public bool LeafSimilar(TreeNode root1, TreeNode root2)
+    {
+        IList<int> list1 = FindAllLeaves(root1);
+        IList<int> list2 = FindAllLeaves(root2);
+
+        if (list1.Count != list2.Count) return false;
+
+        for(int i = 0; i < list1.Count; i++)
+        {
+            if (list1[i] != list2[i]) return false;
+        }
+
+        return true;
+    }
+
+    public IList<int> FindAllLeaves(TreeNode root)
+    {
+        var list = new List<int>();
+        TreeNode currentNode;
+        var stack = new Stack<TreeNode>();
+        stack.Push(root);
+
+        while(stack.Count != 0)
+        {
+            currentNode = stack.Pop();
+            if (currentNode.right is not null)
+            {
+                stack.Push(currentNode.right);
+            }
+            if (currentNode.left is not null)
+            {
+                stack.Push(currentNode.left);
+            }
+            if (currentNode.right is null && currentNode.left is null)
+            {
+                list.Add(currentNode.val);
+            }
+        }
+
+        return list;
     }
 }
