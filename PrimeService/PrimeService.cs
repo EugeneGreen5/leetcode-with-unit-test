@@ -631,4 +631,26 @@ public class PrimeService
             nums1.Except(nums2).ToArray(),
             nums2.Except(nums1).ToArray(),
         };
+
+    public static ListNode ReverseList(ListNode head)
+    {
+        ListNode newHead, previousNode = head, currentNode = head, nextNode;
+
+        if (head is null) return null;
+        else (head.next is null) return head;
+
+        currentNode = head.next;
+        previousNode.next = null;
+
+        while(currentNode.next != null) 
+        {
+            nextNode = currentNode.next;
+            currentNode.next = previousNode;
+            previousNode = currentNode;
+            currentNode = nextNode;
+        }
+        currentNode.next = previousNode;
+
+        return currentNode;
+    }
 }
